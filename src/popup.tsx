@@ -1,7 +1,15 @@
-import { useState, useEffect } from "react"
 import { Keypair } from "@solana/web3.js"
-import bs58 from "bs58";
+import bs58 from "bs58"
+import { useEffect, useState } from "react"
+import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 
+import "./style.css"
+
+import MainPage from "./views/MainPage"
+import WalletPage from "./views/WalletPage"
+import CreateTasksPage from "./views/CreateTasksPage"
+import NodeSettingsPage from "./views/NodeSettingsPage"
+import TaskListPage from "./views/TaskListPage"
 
 type StoredWallet = {
   publicKey: string
@@ -24,7 +32,7 @@ async function getKey(password: string, salt: Uint8Array): Promise<CryptoKey> {
       name: "PBKDF2",
       salt,
       iterations: 100000,
-      hash: "SHA-256",
+      hash: "SHA-256"
     },
     keyMaterial,
     { name: "AES-GCM", length: 128 },
@@ -33,7 +41,10 @@ async function getKey(password: string, salt: Uint8Array): Promise<CryptoKey> {
   )
 }
 
-async function encryptPrivateKey(secretKey: Uint8Array, password: string): Promise<{ encrypted: string; iv: string; salt: string }> {
+async function encryptPrivateKey(
+  secretKey: Uint8Array,
+  password: string
+): Promise<{ encrypted: string; iv: string; salt: string }> {
   const encoder = new TextEncoder()
   const data = encoder.encode(bs58.encode(secretKey))
   const iv = crypto.getRandomValues(new Uint8Array(12))
@@ -54,7 +65,12 @@ async function encryptPrivateKey(secretKey: Uint8Array, password: string): Promi
   }
 }
 
-async function decryptPrivateKey(encrypted: string, password: string, ivBase64: string, saltBase64: string): Promise<Uint8Array> {
+async function decryptPrivateKey(
+  encrypted: string,
+  password: string,
+  ivBase64: string,
+  saltBase64: string
+): Promise<Uint8Array> {
   const iv = Uint8Array.from(Buffer.from(ivBase64, "base64"))
   const salt = Uint8Array.from(Buffer.from(saltBase64, "base64"))
   const encryptedBytes = Uint8Array.from(Buffer.from(encrypted, "base64"))
@@ -74,10 +90,7 @@ async function decryptPrivateKey(encrypted: string, password: string, ivBase64: 
 function IndexPopup() {
   const [hasWallet, setHasWallet] = useState(false)
   const [walletAddress, setWalletAddress] = useState<string | null>(null)
-  const [password, setPassword] = useState("")
-  const [error, setError] = useState<string | null>(null)
-  const [isCreating, setIsCreating] = useState(false)
-  const [isUnlocking, setIsUnlocking] = useState(false)
+  const [showMainPage, setShowMainPage] = useState(false)
 
   useEffect(() => {
     chrome.storage.local.get(["solanaWallet"], (result) => {
@@ -91,116 +104,89 @@ function IndexPopup() {
     })
   }, [])
 
-  const handleCreateWallet = async () => {
-    setIsCreating(true)
-    try {
-      const keypair = Keypair.generate()
-      const publicKey = keypair.publicKey.toString()
-      const result = await encryptPrivateKey(keypair.secretKey, password)
-
-      await chrome.storage.local.set({
-        solanaWallet: {
-          publicKey,
-          encryptedPrivateKey: result.encrypted,
-          iv: result.iv,
-          salt: result.salt,
-        }
-      })
-
-      setWalletAddress(publicKey)
-      setHasWallet(true)
-      setError(null)
-    } catch (e) {
-      console.error(e)
-      setError("Failed to create wallet.")
-    } finally {
-      setIsCreating(false)
+  useEffect(() => {
+    if (walletAddress) {
+      setShowMainPage(true)
+    } else {
+      setShowMainPage(false)
     }
+  }, [walletAddress])
+
+  const handleCreateWallet = async (password: string) => {
+    const keypair = Keypair.generate()
+    const publicKey = keypair.publicKey.toString()
+    const result = await encryptPrivateKey(keypair.secretKey, password)
+
+    await chrome.storage.local.set({
+      solanaWallet: {
+        publicKey,
+        encryptedPrivateKey: result.encrypted,
+        iv: result.iv,
+        salt: result.salt
+      }
+    })
+
+    setWalletAddress(publicKey)
+    setHasWallet(true)
   }
 
-  const handleUnlockWallet = async () => {
-    setIsUnlocking(true)
-    try {
-      const result = await chrome.storage.local.get(["solanaWallet"])
-      const wallet: StoredWallet = result.solanaWallet
+  const handleUnlockWallet = async (password: string) => {
+    const result = await chrome.storage.local.get(["solanaWallet"])
+    const wallet: StoredWallet = result.solanaWallet
 
-      if (!wallet?.encryptedPrivateKey || !wallet?.publicKey) {
-        throw new Error("No wallet found")
-      }
-
-      const decrypted = await decryptPrivateKey(
-        wallet.encryptedPrivateKey,
-        password,
-        wallet.iv,
-        wallet.salt
-      )
-
-      const restoredKeypair = Keypair.fromSecretKey(decrypted)
-      setWalletAddress(restoredKeypair.publicKey.toString())
-      setError(null)
-    } catch (e) {
-      console.error(e)
-      setError("Incorrect password or corrupted wallet.")
-    } finally {
-      setIsUnlocking(false)
+    if (!wallet?.encryptedPrivateKey || !wallet?.publicKey) {
+      throw new Error("Wallet not found")
     }
+
+    const decrypted = await decryptPrivateKey(
+      wallet.encryptedPrivateKey,
+      password,
+      wallet.iv,
+      wallet.salt
+    )
+
+    const restoredKeypair = Keypair.fromSecretKey(decrypted)
+    setWalletAddress(restoredKeypair.publicKey.toString())
   }
 
   const handleClearWallet = async () => {
     await chrome.storage.local.remove("solanaWallet")
     setHasWallet(false)
     setWalletAddress(null)
-    setPassword("")
-    setError(null)
+  }
+
+  const handleWalletClick = () => {
+    setShowMainPage(false)
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        padding: 16,
-        width: 400,
-        height: 600,
-      }}
-    >
-      <h2>Solana Wallet</h2>
-
-      {walletAddress ? (
-        <>
-          <p><strong>Wallet Address:</strong><br />{walletAddress}</p>
-          <button onClick={handleClearWallet}>Clear Wallet</button>
-        </>
-      ) : hasWallet ? (
-        <>
-          <p>Enter your password to unlock wallet:</p>
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+    <div className="flex flex-col items-center p-[16px] w-[400px] min-h-[600px]">
+      <Router>
+        {showMainPage ? (
+          <Routes>
+            <Route path="/" element={
+              <MainPage 
+                walletAddress={walletAddress} 
+                onWalletClick={handleWalletClick} 
+              />
+            } />
+            <Route path="/create-tasks" element={<CreateTasksPage />} />
+            <Route path="/node-settings" element={<NodeSettingsPage />} />
+            <Route path="/task-list" element={<TaskListPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        ) : (
+          <WalletPage 
+            hasWallet={hasWallet}
+            walletAddress={walletAddress}
+            onCreateWallet={handleCreateWallet}
+            onUnlockWallet={handleUnlockWallet}
+            onClearWallet={handleClearWallet}
+            onBack={() => setShowMainPage(true)}
           />
-          <button onClick={handleUnlockWallet} disabled={isUnlocking}>
-            {isUnlocking ? "Unlocking..." : "Unlock Wallet"}
-          </button>
-        </>
-      ) : (
-        <>
-          <p>Create a new wallet and set a password:</p>
-          <input
-            type="password"
-            placeholder="Set Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button onClick={handleCreateWallet} disabled={isCreating || !password}>
-            {isCreating ? "Creating..." : "Create Wallet"}
-          </button>
-        </>
-      )}
-
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <footer style={{ marginTop: "auto" }}>Crafted by @PlasmoHQ</footer>
+        )}
+      </Router>
+      {/* <footer className="mt-auto">Crafted by @PlasmoHQ</footer> */}
     </div>
   )
 }
