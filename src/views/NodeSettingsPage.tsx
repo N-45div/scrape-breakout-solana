@@ -19,10 +19,6 @@ function NodeSettingsPage() {
     navigate("/")
   }
 
-  const handleBack = () => {
-    navigate("/")
-  }
-
   return (
     <div className="page-container w-full">
       <div className="header text-center mb-4">

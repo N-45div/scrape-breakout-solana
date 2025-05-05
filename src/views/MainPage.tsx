@@ -24,17 +24,25 @@ function MainPage({ walletAddress, onWalletClick }: MainPageProps) {
     earnings: "12.5 $SCRAPE",
     bandwidth: "1.2 GB/s",
     activeTasks: 45,
-    tasksCreated: 2
+    tasksCreated: 3
   })
   const [isNodeRunning, setIsNodeRunning] = useState(true)
   const navigate = useNavigate()
 
   const handleStartNode = () => {
     setIsNodeRunning(true)
+    setNodeStatus(prev => ({
+      ...prev,
+      status: "Active"
+    }))
   }
 
   const handleStopNode = () => {
     setIsNodeRunning(false)
+    setNodeStatus(prev => ({
+      ...prev,
+      status: "Inactive"
+    }))
   }
 
   const handleCreateTasks = () => {
@@ -49,6 +57,11 @@ function MainPage({ walletAddress, onWalletClick }: MainPageProps) {
     navigate("/task-list")
   }
 
+
+  const handleViewNodeForbes = () => {
+    navigate("/node-forbes")
+  }
+
   return (
     <div className="main-page flex-1">
       <div className="header">
@@ -61,12 +74,15 @@ function MainPage({ walletAddress, onWalletClick }: MainPageProps) {
         </button>
       </div>
 
-      <div className="flex justify-center gap-4 mt-4 px-4">
+      <div className="flex justify-center gap-4 px-4">
         <button className="nav-button" onClick={handleCreateTasks}>
           Create Tasks
         </button>
         <button className="nav-button" onClick={handleNodeSettings}>
           Node Settings
+        </button>
+        <button className="nav-button" onClick={handleViewNodeForbes}>
+          Node Forbes
         </button>
       </div>
 
@@ -101,7 +117,7 @@ function MainPage({ walletAddress, onWalletClick }: MainPageProps) {
         </div>
       </div>
 
-      <div className="flex justify-center items-center gap-4 px-4">
+      <div className="flex justify-center items-center gap-4 px-4 mb-[15px]">
         <button className="m-0" onClick={handleViewTasks}>
           View Tasks
         </button>

@@ -6,7 +6,7 @@ interface WalletPageProps {
   onCreateWallet: (password: string) => Promise<void>
   onUnlockWallet: (password: string) => Promise<void>
   onClearWallet: () => void
-  onBack?: () => void // 添加新的prop用于返回主页面
+  onBack?: () => void // Add new prop for returning to main page
 }
 
 const MAX_PASSWORD_LENGTH = 6

@@ -10,6 +10,7 @@ import WalletPage from "./views/WalletPage"
 import CreateTasksPage from "./views/CreateTasksPage"
 import NodeSettingsPage from "./views/NodeSettingsPage"
 import TaskListPage from "./views/TaskListPage"
+import NodeForbesPage from "./views/NodeForbesPage"
 
 type StoredWallet = {
   publicKey: string
@@ -160,7 +161,7 @@ function IndexPopup() {
   }
 
   return (
-    <div className="flex flex-col items-center p-[16px] w-[400px] min-h-[600px]">
+    <div className="flex flex-col items-center p-[16px] w-[400px] ">
       <Router>
         {showMainPage ? (
           <Routes>
@@ -173,6 +174,7 @@ function IndexPopup() {
             <Route path="/create-tasks" element={<CreateTasksPage />} />
             <Route path="/node-settings" element={<NodeSettingsPage />} />
             <Route path="/task-list" element={<TaskListPage />} />
+            <Route path="/node-forbes" element={<NodeForbesPage walletAddress={walletAddress} />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         ) : (
