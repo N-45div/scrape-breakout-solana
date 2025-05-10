@@ -15,3 +15,6 @@ pub use task::*;
 
 pub mod dataset;
 pub use dataset::*;
+
+pub mod node_registry;
+pub use node_registry::*;

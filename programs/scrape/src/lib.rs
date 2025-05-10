@@ -14,11 +14,10 @@ pub use instructions::*;
 
 // Constants for the program
 pub const SCRAPE_MINT: &str = "6F2hasc11STQVPcZfX6E767wWV6TZXQRw74fAe11hCH3"; // This is the test mint address for POC
-pub const BONUS_RATE: u64 = 100; // Bonus reward rate 
+pub const BONUS_RATE: u64 = 100; // Bonus reward rate
 pub const REPUTATION_THRESHOLD: u64 = 50;
 
 declare_id!("7pqme6UtiQshBaes6hQ2HkEwnwUph1JsEujZzKi9rmxU");
-
 
 #[program]
 pub mod scrape {
@@ -63,6 +62,10 @@ pub mod scrape {
         provider_node::create(ctx, ipv4, proxy_port, client_port, bandwidth_limit)
     }
 
+    pub fn node_registry_initialize(ctx: Context<NodeRegistryInitializeContext>) -> Result<()> {
+        node_registry::noderegistryinitialize(ctx)
+    }
+
     pub fn update_node(
         ctx: Context<UpdateProviderNodeContext>,
         ipv4: [u8; 4],
@@ -93,8 +96,16 @@ pub mod scrape {
         task::create(ctx, url, filter, label, format, reward)
     }
 
+    pub fn close_task(ctx: Context<CloseTaskContext>) -> Result<()> {
+     task::close_task(ctx)
+    }
+
     pub fn assign_task(ctx: Context<AssignTaskContext>) -> Result<()> {
         task::assign(ctx)
+    }
+
+    pub fn assign_task_by_endpoint(ctx: Context<AssignTaskByEndpointContext>) -> Result<()> {
+        task::assign_task_by_endpoint(ctx)
     }
 
     pub fn complete_task(ctx: Context<CompleteTaskContext>, ipfs_hash: String) -> Result<()> {

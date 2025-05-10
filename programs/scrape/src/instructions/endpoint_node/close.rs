@@ -1,6 +1,6 @@
 use crate::state::endpoint_node::EndpointNode;
 use anchor_lang::prelude::*;
-//use crate::errors::*;
+use crate::error::ErrorCode;
 
 #[derive(Accounts)]
 pub struct CloseEndpointNodeContext<'info> {
@@ -21,7 +21,7 @@ pub fn close(ctx: Context<CloseEndpointNodeContext>) -> Result<()> {
     let signer = &ctx.accounts.signer;
 
     // Verify the signer is the owner of the EndpointNode
-    //require!(endpoint_node.owner == signer.key());
+    require!(endpoint_node.owner == signer.key(), ErrorCode::UnauthorizedNode);
 
     msg!("EndpointNode closed: {}", endpoint_node.key());
     Ok(())

@@ -4,6 +4,7 @@ use crate::state::task::{Task, TaskStatus};
 use crate::state::token::TokenVault;
 use anchor_lang::prelude::*;
 use anchor_spl::token::{Token, TokenAccount, Transfer};
+use crate::ErrorCode;
 
 #[derive(Accounts)]
 pub struct CreateTaskContext<'info> {
@@ -99,5 +100,24 @@ pub fn create(
     token_vault.bandwidth_paid += reward;
 
     msg!("Task created: ID {}, URL: {}", task.id, task.url);
+    Ok(())
+}
+
+#[derive(Accounts)]
+pub struct CloseTaskContext<'info> {
+    #[account(
+        mut,
+        close = signer,
+        seeds = [Task::PREFIX.as_bytes(), task.owner.as_ref(), task.id.to_le_bytes().as_ref()],
+        bump,
+        constraint = task.owner == signer.key() @ ErrorCode::UnauthorizedNode
+    )]
+    pub task: Box<Account<'info, Task>>,
+    #[account(mut)]
+    pub signer: Signer<'info>,
+}
+
+pub fn close_task(ctx: Context<CloseTaskContext>) -> Result<()> {
+    msg!("Task {} closed by owner: {}", ctx.accounts.task.id, ctx.accounts.signer.key());
     Ok(())
 }

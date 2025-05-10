@@ -1,4 +1,4 @@
-use crate::state::provider_node::ProviderNode;
+use crate::state::{provider_node::ProviderNode, node_registry::NodeRegistry};
 use anchor_lang::prelude::*;
 use anchor_spl::token::TokenAccount;
 
@@ -14,6 +14,15 @@ pub struct CreateProviderNodeContext<'info> {
         bump
     )]
     pub provider_node: Box<Account<'info, ProviderNode>>,
+    #[account(
+        mut,
+        seeds = [NodeRegistry::PREFIX.as_bytes()],
+        bump = node_registry.bump,
+        realloc = NodeRegistry::calculate_size(node_registry.nodes.len() + 1),
+        realloc::payer = signer,
+        realloc::zero = false
+    )]
+    pub node_registry: Box<Account<'info, NodeRegistry>>,
     #[account(
         constraint = node_token_account.mint == crate::SCRAPE_MINT.parse::<Pubkey>().unwrap(),
         constraint = node_token_account.owner == signer.key(),
@@ -34,7 +43,9 @@ pub fn create(
     let signer = &ctx.accounts.signer;
     let provider_node = &mut ctx.accounts.provider_node;
     let node_token_account = &ctx.accounts.node_token_account;
+    let node_registry = &mut ctx.accounts.node_registry;
 
+    // Initialize the ProviderNode
     provider_node.bump = ctx.bumps.provider_node;
     provider_node.owner = signer.key();
     provider_node.ipv4 = ipv4;
@@ -48,6 +59,13 @@ pub fn create(
     provider_node.token_account = node_token_account.key();
     provider_node.last_bonus_claim = 0;
 
+    // Add the provider node's owner to the NodeRegistry
+    if !node_registry.nodes.contains(&provider_node.owner) {
+        node_registry.nodes.push(provider_node.owner);
+    }
+
     msg!("ProviderNode created for user: {}", provider_node.owner);
+    msg!("ProviderNode added to NodeRegistry. Total nodes: {}", node_registry.nodes.len());
+
     Ok(())
 }

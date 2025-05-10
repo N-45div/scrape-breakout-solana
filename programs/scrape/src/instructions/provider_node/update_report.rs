@@ -1,6 +1,6 @@
 use crate::state::provider_node::ProviderNode;
 use anchor_lang::prelude::*;
-//use crate::errors::*;
+use crate::error::ErrorCode;
 
 #[derive(Accounts)]
 pub struct UpdateProviderNodeReportContext<'info> {

@@ -1,6 +1,6 @@
 use crate::state::provider_node::ProviderNode;
 use anchor_lang::prelude::*;
-//use crate::errors::*;
+use crate::error::ErrorCode;
 
 #[derive(Accounts)]
 pub struct UpdateProviderNodeContext<'info> {
@@ -26,7 +26,7 @@ pub fn update(
     let signer = &ctx.accounts.signer;
 
     // Verify the signer is the owner of the ProviderNode
-    //require!(provider_node.owner == signer.key(), ErrorCode::UnauthorizedNode);
+    require!(provider_node.owner == signer.key(), ErrorCode::UnauthorizedNode);
 
     // Update fields
     provider_node.ipv4 = ipv4;
