@@ -122,7 +122,7 @@ export function HandbookOverview() {
           <div className="inline-flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 p-2 mb-4">
             <BookOpen className="h-6 w-6 text-black dark:text-white" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">Decentralized Scraping Hub</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">Overview</h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             A <strong>revolutionary platform</strong> solving the data collection challenges for <strong>AI builders</strong> through decentralized web scraping
           </p>
