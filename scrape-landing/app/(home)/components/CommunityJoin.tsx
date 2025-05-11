@@ -3,10 +3,35 @@
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/ui/container"
 import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
-import Link from "next/link"
+import { ArrowRight, Check, Loader2 } from "lucide-react"
+import { useState } from "react"
 
 export function CommunityJoin() {
+  const [isLoading, setIsLoading] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const handleJoinWaitlist = async () => {
+    setIsLoading(true)
+    setError(null)
+    
+    try {
+      const res = await fetch("/api/send", { method: "POST" })
+      const data = await res.json()
+      
+      if (res.ok) {
+        setIsSuccess(true)
+      } else {
+        setError(data.message || "Submission failed. Please try again later.")
+      }
+    } catch (err) {
+      setError("An error occurred. Please try again later.")
+      console.error(err)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return (
     <section className="w-full py-16 px-4 bg-white dark:bg-black relative overflow-hidden">
       {/* Background design elements - simplified */}
@@ -48,20 +73,41 @@ export function CommunityJoin() {
             cost-effective alternative to centralized proxy networks.
           </p>
 
-          <div className="flex justify-center mb-12">
+          <div className="flex flex-col items-center justify-center mb-12">
             <Button
-            onClick={async () => {
-              const res = await fetch("/api/send",{method: "POST"})
-              const data = await res.json();
-              // console.log('data:', data)
-            }}
-              asChild
+              onClick={handleJoinWaitlist}
+              disabled={isLoading || isSuccess}
               size="lg"
-              className="bg-gradient-to-r from-indigo-600 to-blue-700 cursor-pointer hover:from-indigo-700 hover:to-blue-800 text-white shadow-lg px-8">
-              <div>
-                Join the Waitlist <ArrowRight className="ml-2 h-5 w-5" />
-              </div>
+              className={`${
+                isSuccess 
+                  ? "bg-green-600 hover:bg-green-700" 
+                  : "bg-gradient-to-r from-indigo-600 to-blue-700 hover:from-indigo-700 hover:to-blue-800"
+              } cursor-pointer text-white shadow-lg px-8`}
+            >
+              {isLoading ? (
+                <>
+                  <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Processing...
+                </>
+              ) : isSuccess ? (
+                <>
+                  <Check className="mr-2 h-5 w-5" /> Joined Waitlist
+                </>
+              ) : (
+                <>
+                  Join the Waitlist <ArrowRight className="ml-2 h-5 w-5" />
+                </>
+              )}
             </Button>
+            
+            {error && (
+              <p className="mt-4 text-red-500 text-sm">{error}</p>
+            )}
+            
+            {isSuccess && (
+              <p className="mt-4 text-green-500 text-sm">
+                Thank you for joining! We'll be in touch soon.
+              </p>
+            )}
           </div>
         </motion.div>
       </Container>
