@@ -7,6 +7,14 @@ const inter = Inter({
   subsets: ['latin'],
 });
 
+export const metadata = {
+  icons: {
+    icon: '/logo.png',
+    shortcut: '/logo.png',
+    apple: '/logo.png',
+  },
+};
+
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={inter.className} suppressHydrationWarning>
