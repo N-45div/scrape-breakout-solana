@@ -50,6 +50,11 @@ export function CommunityJoin() {
 
           <div className="flex justify-center mb-12">
             <Button
+            onClick={async () => {
+              const res = await fetch("/api/send",{method: "POST"})
+              const data = await res.json();
+              // console.log('data:', data)
+            }}
               asChild
               size="lg"
               className="bg-gradient-to-r from-indigo-600 to-blue-700 cursor-pointer hover:from-indigo-700 hover:to-blue-800 text-white shadow-lg px-8">
