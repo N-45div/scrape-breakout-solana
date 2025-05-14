@@ -41,24 +41,24 @@ export function HandbookOverview() {
 
   const benefitFeatures = [
     {
-      id: "skills",
-      title: "Overcome Data Collection Barriers",
-      description: "Bypass bot detection systems and access large-scale, diverse datasets that were previously difficult or expensive to obtain"
+      id: "accurate",
+      title: "Accurate, Model-Ready Data",
+      description: "Semantic filtering and labeling ensure trusted data (solving the 67% lack of trust), delivering JSONL, TFRecords, and Parquet formats with 99% accuracy"
     },
     {
-      id: "network",
-      title: "Reduce Data Acquisition Costs",
-      description: "Save up to 90% compared to centralized proxy services while accessing a larger and more diverse network of IP addresses"
+      id: "cost",
+      title: "Cost-Effective & Accessible",
+      description: "Decentralized proxy network eliminates costly subscriptions, making data accessible for small AI teams and cutting costs by 50%"
     },
     {
-      id: "opportunity",
-      title: "Earn Passive Income",
-      description: "Node operators can monetize their unused bandwidth by contributing to the network and earning SCRAPE tokens"
+      id: "time",
+      title: "Time-Saving Efficiency",
+      description: "Automates data cleanup, saving 4+ hours weekly, streamlining workflows by 50% compared to traditional manual processes"
     },
     {
-      id: "community",
-      title: "Build Better AI Models",
-      description: "Access higher quality, more diverse training data to improve model performance and reduce bias in AI systems"
+      id: "ethical",
+      title: "Incentivized & Ethical",
+      description: "Rewards users for contributing IPs, ensuring ethical and GDPR/CCPA-compliant data sourcing with transparent practices"
     }
   ];
 
@@ -124,7 +124,7 @@ export function HandbookOverview() {
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">Overview</h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            A <strong>revolutionary platform</strong> solving the data collection challenges for <strong>AI builders</strong> through decentralized web scraping
+            <strong>67%</strong> of organizations lack trust in their data, <strong>45%</strong> cite inconsistent data as a barrier, and <strong>52%</strong> have concerns about data quality for AI training
           </p>
         </motion.div>
 

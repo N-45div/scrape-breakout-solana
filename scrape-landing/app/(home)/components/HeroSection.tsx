@@ -32,11 +32,15 @@ export function HeroSection() {
           <div className="text-center">
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">
-              <span className="bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 dark:from-gray-300 dark:via-gray-200 dark:to-white bg-clip-text text-transparent">Decentralized Scraping Hub</span>
+              <span className="bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 dark:from-gray-300 dark:via-gray-200 dark:to-white bg-clip-text text-transparent">Scrape</span>
             </h1>
+            
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-gray-800 dark:text-gray-200 mb-4">
+              Power AI, Share the Rewards | DePIN x AI
+            </h2>
 
             <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-3xl mx-auto">
-              A Solana-powered platform that leverages token incentives to create a decentralized proxy network
+              A decentralized platform solving data challenges for AI builders through innovative scraping solutions
             </p>
           </div>
         </div>
