@@ -6,14 +6,14 @@ We appreciate your interest in contributing to Scrape! Here are some guidelines 
 
 1. **Fork the Repository:**
 
-   * Visit the repository at [GitHub](https://github.com/scrape-project/scrape).
+   * Visit the repository at [GitHub](https://github.com/N-45div/scrape-breakout-solana).
    * Click the 'Fork' button to create your copy of the repository.
 
 2. **Clone Your Fork:**
 
    ```bash
-   git clone https://github.com/<your-username>/scrape.git
-   cd scrape
+   [git clone https://github.com/N-45div/scrape-breakout-solana.git](https://github.com/N-45div/scrape-breakout-solana.git)
+   cd scrape-breakout-solana
    ```
 
 3. **Create a New Branch:**
@@ -36,7 +36,7 @@ We appreciate your interest in contributing to Scrape! Here are some guidelines 
 
 5. **Make Your Changes:**
 
-   * Focus on specific areas such as the Chrome extension, Solana smart contracts, or semantic filtering algorithms.
+   * Focus on specific areas such as the Chrome extension, Solana programs to make them more robust, or semantic filtering algorithms.
 
 6. **Run Tests:**
 
