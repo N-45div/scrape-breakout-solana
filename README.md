@@ -59,7 +59,7 @@ We welcome contributions! To get started:
    ```bash
    git checkout -b feature-name
    ```
-2. Follow the coding guidelines in `CONTRIBUTING.md`.
+2. Follow the coding guidelines in [CONTRIBUTING.md].
 3. Submit a pull request for review.
 
 
