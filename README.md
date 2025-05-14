@@ -59,7 +59,7 @@ We welcome contributions! To get started:
    ```bash
    git checkout -b feature-name
    ```
-2. Follow the coding guidelines in [CONTRIBUTING.md].
+2. Follow the coding guidelines in [CONTRIBUTING.md](https://github.com/N-45div/scrape-breakout-solana/blob/main/CONTRIBUTING.md).
 3. Submit a pull request for review.
 
 
@@ -76,7 +76,7 @@ Scrape is built by a team of experienced developers in decentralized infrastruct
 
 ## License
 
-This project is licensed under the MIT License—see `LICENSE` for details.
+This project is licensed under the MIT License—see [LICENSE](https://github.com/N-45div/scrape-breakout-solana/blob/main/LICENSE.md) for details.
 
 ## Contact
 
