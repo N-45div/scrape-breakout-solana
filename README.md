@@ -33,7 +33,7 @@ AI builders need diverse, high-quality data, but bot detection and costly proxie
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/scrape-project/scrape.git
+   git clone https://github.com/N-45div/scrape-breakout-solana
    ```
 
 2. Install dependencies (requires Node.js and Solana CLI):
