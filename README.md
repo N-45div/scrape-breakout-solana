@@ -76,7 +76,7 @@ Scrape is built by a team of experienced developers in decentralized infrastruct
 
 ## License
 
-This project is licensed under the MIT License—see [LICENSE](https://github.com/N-45div/scrape-breakout-solana/blob/main/LICENSE.md) for details.
+This project is licensed under the MIT License—see [LICENSE](https://github.com/N-45div/scrape-breakout-solana?tab=MIT-1-ov-file) for details.
 
 ## Contact
 
