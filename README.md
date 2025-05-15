@@ -56,9 +56,9 @@ AI builders need diverse, high-quality data, but bot detection and costly proxie
    solana config set --keypair ~/.config/solana/id.json
    ```
 
-4. **Deploy Programs:**
+4. **Build the Programs:**
 
-   Navigate to the program directory and deploy:
+   Build the program :
 
    ```bash
    anchor build
