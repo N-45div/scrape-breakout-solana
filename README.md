@@ -34,6 +34,7 @@ AI builders need diverse, high-quality data, but bot detection and costly proxie
 
    ```bash
    git clone https://github.com/N-45div/scrape-breakout-solana
+   cd scrape-breakout-solana
    ```
 
 2. Install dependencies (requires Node.js and Solana CLI):
@@ -48,7 +49,9 @@ AI builders need diverse, high-quality data, but bot detection and costly proxie
    ```bash
    npm start
    ```
+## User Journey 
 
+![user](https://github.com/user-attachments/assets/68dccfca-6185-4582-8c17-70128ca8f29f)
 
 ## Contributing
 
