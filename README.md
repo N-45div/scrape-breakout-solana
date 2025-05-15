@@ -61,9 +61,7 @@ AI builders need diverse, high-quality data, but bot detection and costly proxie
    Navigate to the program directory and deploy:
 
    ```bash
-   cd programs/scrape
    anchor build
-   anchor deploy
    ```
 
 5. **Run the Backend:**
