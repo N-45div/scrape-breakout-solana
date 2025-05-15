@@ -94,9 +94,11 @@ AI builders need diverse, high-quality data, but bot detection and costly proxie
    npm run dev
    ```
 
-### Deployed Program 
+### Deployed Program (devnet)
 
-Program id : `
+Program id : `7pqme6UtiQshBaes6hQ2HkEwnwUph1JsEujZzKi9rmxU`
+Deployed link : [Click here](https://explorer.solana.com/address/7pqme6UtiQshBaes6hQ2HkEwnwUph1JsEujZzKi9rmxU?cluster=devnet)
+
 ## User Journey 
 
 ![user](https://github.com/user-attachments/assets/68dccfca-6185-4582-8c17-70128ca8f29f)
