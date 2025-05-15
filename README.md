@@ -94,8 +94,8 @@ AI builders need diverse, high-quality data, but bot detection and costly proxie
 
 ### Deployed Program (devnet)
 
-Program id : `7pqme6UtiQshBaes6hQ2HkEwnwUph1JsEujZzKi9rmxU`
-Deployed link : [Click here](https://explorer.solana.com/address/7pqme6UtiQshBaes6hQ2HkEwnwUph1JsEujZzKi9rmxU?cluster=devnet)
+* Program id : `7pqme6UtiQshBaes6hQ2HkEwnwUph1JsEujZzKi9rmxU`
+* Deployed link : [Click here](https://explorer.solana.com/address/7pqme6UtiQshBaes6hQ2HkEwnwUph1JsEujZzKi9rmxU?cluster=devnet)
 
 ## User Journey 
 
