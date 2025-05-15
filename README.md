@@ -30,25 +30,73 @@ AI builders need diverse, high-quality data, but bot detection and costly proxie
 
 ### For Developers
 
-1. Clone the repository:
+1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/N-45div/scrape-breakout-solana
+   git clone https://github.com/N-45div/scrape-breakout-solana.git
    cd scrape-breakout-solana
    ```
 
-2. Install dependencies (requires Node.js and Solana CLI):
+2. **Install Dependencies:**
+
+   Ensure you have **Node.js**, **Solana CLI**, and **Anchor CLI** installed.
 
    ```bash
    npm install
-   solana-keygen new
+   anchor --version
+   solana --version
    ```
 
-3. Run the development server:
+3. **Setup Solana Wallet:**
+
+   Generate a new Solana keypair or import an existing one:
 
    ```bash
+   solana-keygen new --outfile ~/.config/solana/id.json
+   solana config set --keypair ~/.config/solana/id.json
+   ```
+
+4. **Deploy Programs:**
+
+   Navigate to the program directory and deploy:
+
+   ```bash
+   cd programs/scrape
+   anchor build
+   anchor deploy
+   ```
+
+5. **Run the Backend:**
+
+   Start the backend server:
+
+   ```bash
+   cd scrape-backend
+   npm run build
    npm start
    ```
+
+6. **Run the Extension:**
+
+   Load the `scrape-extension` directory as an unpacked extension in your browser.
+   
+   ```bash
+   cd scrape-extension
+   pnpm i
+   pnpm dev
+   ```
+
+7. **Launch the Landing Page:**
+
+   ```bash
+   cd scrape-landing
+   npm install
+   npm run dev
+   ```
+
+### Deployed Program 
+
+Program id : `
 ## User Journey 
 
 ![user](https://github.com/user-attachments/assets/68dccfca-6185-4582-8c17-70128ca8f29f)
