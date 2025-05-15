@@ -3,8 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/ui/container"
 import { motion } from "framer-motion"
-import { ArrowRight, Check, Loader2 } from "lucide-react"
-import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 
 export function CommunityJoin() {
 
@@ -50,14 +49,11 @@ export function CommunityJoin() {
           </p>
 
           <div className="flex justify-center mb-12">
-            <Button
-              asChild
-              size="lg"
-              className="bg-gradient-to-r from-indigo-600 to-blue-700 cursor-pointer hover:from-indigo-700 hover:to-blue-800 text-white shadow-lg px-8">
-              <Link href="/form">
+            <button data-tally-open="wopXAV" data-tally-emoji-text="👋" data-tally-emoji-animation="wave" >
+              <div className="cursor-pointer flex">
                 Join the Waitlist <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
+              </div>
+            </button>
           </div>
         </motion.div>
       </Container>
