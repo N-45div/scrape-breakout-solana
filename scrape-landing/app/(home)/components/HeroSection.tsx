@@ -36,11 +36,11 @@ export function HeroSection() {
             </h1>
             
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-gray-800 dark:text-gray-200 mb-4">
-              Power AI, Share the Rewards | DePIN x AI
+              Power AI, Share the Rewards
             </h2>
 
             <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-3xl mx-auto">
-              A decentralized platform solving data challenges for AI builders through innovative scraping solutions
+              A decentralized scraping hub solving data challenges for AI builders through innovative  scraping solutions and that leverages token incentives to create a decentralized proxy network of millions of user-provided IP addresses
             </p>
           </div>
         </div>
