@@ -1,0 +1,1603 @@
+{
+  "address": "7pqme6UtiQshBaes6hQ2HkEwnwUph1JsEujZzKi9rmxU",
+  "metadata": {
+    "name": "scrape",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "assign_task",
+      "discriminator": [
+        158,
+        142,
+        217,
+        16,
+        175,
+        209,
+        92,
+        237
+      ],
+      "accounts": [
+        {
+          "name": "task",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  84,
+                  65,
+                  83,
+                  75
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "task.owner",
+                "account": "Task"
+              },
+              {
+                "kind": "account",
+                "path": "task.id",
+                "account": "Task"
+              }
+            ]
+          }
+        },
+        {
+          "name": "node",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  82,
+                  79,
+                  86,
+                  73,
+                  68,
+                  69,
+                  82,
+                  95,
+                  78,
+                  79,
+                  68,
+                  69
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "node.owner",
+                "account": "ProviderNode"
+              }
+            ]
+          }
+        },
+        {
+          "name": "signer",
+          "signer": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "assign_task_by_endpoint",
+      "discriminator": [
+        82,
+        113,
+        249,
+        1,
+        61,
+        227,
+        106,
+        89
+      ],
+      "accounts": [
+        {
+          "name": "task",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  84,
+                  65,
+                  83,
+                  75
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "task.owner",
+                "account": "Task"
+              },
+              {
+                "kind": "account",
+                "path": "task.id",
+                "account": "Task"
+              }
+            ]
+          }
+        },
+        {
+          "name": "endpoint_node",
+          "signer": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  69,
+                  78,
+                  68,
+                  80,
+                  79,
+                  73,
+                  78,
+                  84,
+                  95,
+                  78,
+                  79,
+                  68,
+                  69
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "endpoint_node"
+              }
+            ]
+          },
+          "relations": [
+            "task"
+          ]
+        },
+        {
+          "name": "node_registry",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  78,
+                  79,
+                  68,
+                  69,
+                  95,
+                  82,
+                  69,
+                  71,
+                  73,
+                  83,
+                  84,
+                  82,
+                  89
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "provider_node",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  82,
+                  79,
+                  86,
+                  73,
+                  68,
+                  69,
+                  82,
+                  95,
+                  78,
+                  79,
+                  68,
+                  69
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "provider_node.owner",
+                "account": "ProviderNode"
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "claim_task_rewards",
+      "discriminator": [
+        242,
+        238,
+        29,
+        42,
+        69,
+        54,
+        107,
+        45
+      ],
+      "accounts": [
+        {
+          "name": "node",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  82,
+                  79,
+                  86,
+                  73,
+                  68,
+                  69,
+                  82,
+                  95,
+                  78,
+                  79,
+                  68,
+                  69
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "node.owner",
+                "account": "ProviderNode"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  84,
+                  79,
+                  75,
+                  69,
+                  78,
+                  95,
+                  86,
+                  65,
+                  85,
+                  76,
+                  84
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault_token_account",
+          "writable": true
+        },
+        {
+          "name": "node_token_account",
+          "writable": true
+        },
+        {
+          "name": "signer",
+          "signer": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "close_endpoint_node",
+      "discriminator": [
+        92,
+        236,
+        231,
+        7,
+        84,
+        173,
+        245,
+        204
+      ],
+      "accounts": [
+        {
+          "name": "endpoint_node",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  69,
+                  78,
+                  68,
+                  80,
+                  79,
+                  73,
+                  78,
+                  84,
+                  95,
+                  78,
+                  79,
+                  68,
+                  69
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "complete_task",
+      "discriminator": [
+        109,
+        167,
+        192,
+        41,
+        129,
+        108,
+        220,
+        196
+      ],
+      "accounts": [
+        {
+          "name": "task",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  84,
+                  65,
+                  83,
+                  75
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "task.owner",
+                "account": "Task"
+              },
+              {
+                "kind": "account",
+                "path": "task.id",
+                "account": "Task"
+              }
+            ]
+          }
+        },
+        {
+          "name": "node",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  82,
+                  79,
+                  86,
+                  73,
+                  68,
+                  69,
+                  82,
+                  95,
+                  78,
+                  79,
+                  68,
+                  69
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "node.owner",
+                "account": "ProviderNode"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  84,
+                  79,
+                  75,
+                  69,
+                  78,
+                  95,
+                  86,
+                  65,
+                  85,
+                  76,
+                  84
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault_token_account",
+          "writable": true
+        },
+        {
+          "name": "node_token_account",
+          "writable": true
+        },
+        {
+          "name": "signer",
+          "signer": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "ipfs_hash",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "create_client",
+      "discriminator": [
+        155,
+        165,
+        72,
+        245,
+        11,
+        206,
+        91,
+        141
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "client",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  67,
+                  76,
+                  73,
+                  69,
+                  78,
+                  84
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "rent",
+          "address": "SysvarRent111111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "create_endpoint_node",
+      "discriminator": [
+        139,
+        201,
+        153,
+        100,
+        196,
+        112,
+        229,
+        52
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "endpoint_node",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  69,
+                  78,
+                  68,
+                  80,
+                  79,
+                  73,
+                  78,
+                  84,
+                  95,
+                  78,
+                  79,
+                  68,
+                  69
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "rent",
+          "address": "SysvarRent111111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "create_node",
+      "discriminator": [
+        20,
+        183,
+        134,
+        233,
+        51,
+        51,
+        115,
+        83
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "provider_node",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  82,
+                  79,
+                  86,
+                  73,
+                  68,
+                  69,
+                  82,
+                  95,
+                  78,
+                  79,
+                  68,
+                  69
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "node_registry",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  78,
+                  79,
+                  68,
+                  69,
+                  95,
+                  82,
+                  69,
+                  71,
+                  73,
+                  83,
+                  84,
+                  82,
+                  89
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "node_token_account"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "rent",
+          "address": "SysvarRent111111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "ipv4",
+          "type": {
+            "array": [
+              "u8",
+              4
+            ]
+          }
+        },
+        {
+          "name": "proxy_port",
+          "type": "u16"
+        },
+        {
+          "name": "client_port",
+          "type": "u16"
+        },
+        {
+          "name": "bandwidth_limit",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "create_task",
+      "discriminator": [
+        194,
+        80,
+        6,
+        180,
+        232,
+        127,
+        48,
+        171
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "task",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  84,
+                  65,
+                  83,
+                  75
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              },
+              {
+                "kind": "account",
+                "path": "client.task_counter",
+                "account": "Client"
+              }
+            ]
+          }
+        },
+        {
+          "name": "client",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  67,
+                  76,
+                  73,
+                  69,
+                  78,
+                  84
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "endpoint_node",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  69,
+                  78,
+                  68,
+                  80,
+                  79,
+                  73,
+                  78,
+                  84,
+                  95,
+                  78,
+                  79,
+                  68,
+                  69
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "endpoint_node.owner",
+                "account": "EndpointNode"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  84,
+                  79,
+                  75,
+                  69,
+                  78,
+                  95,
+                  86,
+                  65,
+                  85,
+                  76,
+                  84
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault_token_account",
+          "writable": true
+        },
+        {
+          "name": "user_token_account",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "rent",
+          "address": "SysvarRent111111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "url",
+          "type": "string"
+        },
+        {
+          "name": "filter",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "type": "string"
+        },
+        {
+          "name": "format",
+          "type": "string"
+        },
+        {
+          "name": "reward",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "download_dataset",
+      "discriminator": [
+        145,
+        106,
+        229,
+        180,
+        207,
+        34,
+        11,
+        81
+      ],
+      "accounts": [
+        {
+          "name": "task",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  84,
+                  65,
+                  83,
+                  75
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "task.owner",
+                "account": "Task"
+              },
+              {
+                "kind": "account",
+                "path": "task.id",
+                "account": "Task"
+              }
+            ]
+          }
+        },
+        {
+          "name": "client",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  67,
+                  76,
+                  73,
+                  69,
+                  78,
+                  84
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "signer",
+          "signer": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "init_token_vault",
+      "discriminator": [
+        203,
+        26,
+        194,
+        169,
+        252,
+        226,
+        179,
+        180
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "token_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  84,
+                  79,
+                  75,
+                  69,
+                  78,
+                  95,
+                  86,
+                  65,
+                  85,
+                  76,
+                  84
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault_token_account"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "rent",
+          "address": "SysvarRent111111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "node_registry_initialize",
+      "discriminator": [
+        117,
+        0,
+        186,
+        183,
+        23,
+        30,
+        229,
+        222
+      ],
+      "accounts": [
+        {
+          "name": "node_registry",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  78,
+                  79,
+                  68,
+                  69,
+                  95,
+                  82,
+                  69,
+                  71,
+                  73,
+                  83,
+                  84,
+                  82,
+                  89
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "preview_dataset",
+      "discriminator": [
+        220,
+        71,
+        119,
+        141,
+        124,
+        15,
+        44,
+        219
+      ],
+      "accounts": [
+        {
+          "name": "task",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  84,
+                  65,
+                  83,
+                  75
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "task.owner",
+                "account": "Task"
+              },
+              {
+                "kind": "account",
+                "path": "task.id",
+                "account": "Task"
+              }
+            ]
+          }
+        },
+        {
+          "name": "client",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  67,
+                  76,
+                  73,
+                  69,
+                  78,
+                  84
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "signer",
+          "signer": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "update_client_report",
+      "discriminator": [
+        127,
+        12,
+        207,
+        183,
+        118,
+        13,
+        84,
+        88
+      ],
+      "accounts": [
+        {
+          "name": "client",
+          "writable": true
+        },
+        {
+          "name": "signer",
+          "signer": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "update_node",
+      "discriminator": [
+        13,
+        65,
+        246,
+        102,
+        101,
+        91,
+        98,
+        43
+      ],
+      "accounts": [
+        {
+          "name": "provider_node",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  82,
+                  79,
+                  86,
+                  73,
+                  68,
+                  69,
+                  82,
+                  95,
+                  78,
+                  79,
+                  68,
+                  69
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "ipv4",
+          "type": {
+            "array": [
+              "u8",
+              4
+            ]
+          }
+        },
+        {
+          "name": "proxy_port",
+          "type": "u16"
+        },
+        {
+          "name": "client_port",
+          "type": "u16"
+        },
+        {
+          "name": "bandwidth_limit",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "update_node_report",
+      "discriminator": [
+        127,
+        124,
+        148,
+        254,
+        151,
+        174,
+        203,
+        11
+      ],
+      "accounts": [
+        {
+          "name": "provider_node",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  82,
+                  79,
+                  86,
+                  73,
+                  68,
+                  69,
+                  82,
+                  95,
+                  78,
+                  79,
+                  68,
+                  69
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "bandwidth_used",
+          "type": "u64"
+        },
+        {
+          "name": "reputation_increase",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Client",
+      "discriminator": [
+        221,
+        237,
+        145,
+        143,
+        170,
+        194,
+        133,
+        115
+      ]
+    },
+    {
+      "name": "EndpointNode",
+      "discriminator": [
+        175,
+        16,
+        7,
+        236,
+        18,
+        13,
+        73,
+        31
+      ]
+    },
+    {
+      "name": "NodeRegistry",
+      "discriminator": [
+        44,
+        159,
+        137,
+        51,
+        245,
+        185,
+        177,
+        45
+      ]
+    },
+    {
+      "name": "ProviderNode",
+      "discriminator": [
+        212,
+        96,
+        225,
+        26,
+        241,
+        140,
+        245,
+        52
+      ]
+    },
+    {
+      "name": "Task",
+      "discriminator": [
+        79,
+        34,
+        229,
+        55,
+        88,
+        90,
+        55,
+        84
+      ]
+    },
+    {
+      "name": "TokenVault",
+      "discriminator": [
+        121,
+        7,
+        84,
+        254,
+        151,
+        228,
+        43,
+        144
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "UnauthorizedNode",
+      "msg": "Unauthorized node operation."
+    },
+    {
+      "code": 6001,
+      "name": "TaskNotAssigned",
+      "msg": "Task is not in a state to be assigned."
+    },
+    {
+      "code": 6002,
+      "name": "InactiveNode",
+      "msg": "Node is inactive and cannot perform operations."
+    },
+    {
+      "code": 6003,
+      "name": "InsufficientReputation",
+      "msg": "Node reputation is insufficient to claim rewards."
+    },
+    {
+      "code": 6004,
+      "name": "BandwidthExceeded",
+      "msg": "Bandwidth usage exceeds the paid amount."
+    }
+  ],
+  "types": [
+    {
+      "name": "Client",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "task_counter",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EndpointNode",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "owner",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "NodeRegistry",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "nodes",
+            "type": {
+              "vec": "pubkey"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "ProviderNode",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "ipv4",
+            "type": {
+              "array": [
+                "u8",
+                4
+              ]
+            }
+          },
+          {
+            "name": "proxy_port",
+            "type": "u16"
+          },
+          {
+            "name": "client_port",
+            "type": "u16"
+          },
+          {
+            "name": "bandwidth_limit",
+            "type": "u64"
+          },
+          {
+            "name": "bandwidth_used",
+            "type": "u64"
+          },
+          {
+            "name": "reputation",
+            "type": "u64"
+          },
+          {
+            "name": "rewards",
+            "type": "u64"
+          },
+          {
+            "name": "active",
+            "type": "bool"
+          },
+          {
+            "name": "token_account",
+            "type": "pubkey"
+          },
+          {
+            "name": "last_bonus_claim",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Task",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "id",
+            "type": "u64"
+          },
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "endpoint_node",
+            "type": "pubkey"
+          },
+          {
+            "name": "url",
+            "type": "string"
+          },
+          {
+            "name": "filter",
+            "type": "string"
+          },
+          {
+            "name": "label",
+            "type": "string"
+          },
+          {
+            "name": "format",
+            "type": "string"
+          },
+          {
+            "name": "reward",
+            "type": "u64"
+          },
+          {
+            "name": "status",
+            "type": {
+              "defined": {
+                "name": "TaskStatus"
+              }
+            }
+          },
+          {
+            "name": "node_assigned",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "ipfs_hash",
+            "type": {
+              "option": "string"
+            }
+          },
+          {
+            "name": "dataset_size",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "TaskStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Pending"
+          },
+          {
+            "name": "Assigned"
+          },
+          {
+            "name": "Completed"
+          }
+        ]
+      }
+    },
+    {
+      "name": "TokenVault",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "token_account",
+            "type": "pubkey"
+          },
+          {
+            "name": "total_rewards_distributed",
+            "type": "u64"
+          },
+          {
+            "name": "bandwidth_paid",
+            "type": "u64"
+          },
+          {
+            "name": "bandwidth_used",
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ]
+}
