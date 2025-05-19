@@ -39,7 +39,7 @@ const app: Express = express();
 // Configure CORS to allow requests from the extension
 app.use(cors({
   origin: [
-    "chrome-extension://bfeaohkblfngjlgcmilbficojbgkgfcl",
+    "chrome-extension://<CHROME_EXTENSION_ID>",
     "http://127.0.0.1:3000",
     "http://localhost:3000",
   ],
@@ -49,8 +49,8 @@ app.use(cors({
 app.use(express.json());
 
 // Supabase setup
-const supabaseUrl: string = process.env.SUPABASE_URL ?? 'https://ceeitbbaooocsrhtmcsk.supabase.co';
-const supabaseKey: string = process.env.SUPABASE_KEY ?? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNlZWl0YmJhb29vY3NyaHRtY3NrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY2ODEwOTYsImV4cCI6MjA2MjI1NzA5Nn0.8qOj5QLLGu46Tz3qurSjMBTyUmkH5V8YzvQZtM01bMc';
+const supabaseUrl: string = process.env.SUPABASE_URL ?? '';
+const supabaseKey: string = process.env.SUPABASE_KEY ?? '';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Solana setup
@@ -58,12 +58,12 @@ const connection = new Connection("https://api.devnet.solana.com", "confirmed");
 const PROGRAM_ID = new PublicKey("7pqme6UtiQshBaes6hQ2HkEwnwUph1JsEujZzKi9rmxU");
 
 // Privy setup
-const PRIVY_APP_ID: string = process.env.PRIVY_APP_ID ?? 'cmaus0x8b0031l40m444144i8';
-const PRIVY_APP_SECRET: string = process.env.PRIVY_APP_SECRET ?? '5x739hCFggSL4aWnkz5r9FDHpmg3naoDiqq3ox7BrsUxaWNaK1XK3KHjoLNJfdHyphP3gHoptoPN3WigUQ7vhkAx';
+const PRIVY_APP_ID: string = process.env.PRIVY_APP_ID ?? '';
+const PRIVY_APP_SECRET: string = process.env.PRIVY_APP_SECRET ?? '';
 
 // Google OAuth setup
-const GOOGLE_CLIENT_ID: string = process.env.GOOGLE_CLIENT_ID ?? '620675500004-2keojddlfo6266ipd916t021i1j2ovvq.apps.googleusercontent.com';
-const GOOGLE_CLIENT_SECRET: string = process.env.GOOGLE_CLIENT_SECRET ?? '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';
+const GOOGLE_CLIENT_ID: string = process.env.GOOGLE_CLIENT_ID ?? '';
+const GOOGLE_CLIENT_SECRET: string = process.env.GOOGLE_CLIENT_SECRET ?? '';
 
 // Initialize PrivyClient
 const privy = new PrivyClient(PRIVY_APP_ID, PRIVY_APP_SECRET);
